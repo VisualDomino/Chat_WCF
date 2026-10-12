@@ -1,0 +1,7 @@
+C:\Users\domin\OneDrive\Desktop\Chat_WCF\Chat_WCF_Service\Chat_WCF_Service\bin\Debug\Chat_WCF_Service.exe.config
+C:\Users\domin\OneDrive\Desktop\Chat_WCF\Chat_WCF_Service\Chat_WCF_Service\bin\Debug\Chat_WCF_Service.exe
+C:\Users\domin\OneDrive\Desktop\Chat_WCF\Chat_WCF_Service\Chat_WCF_Service\bin\Debug\Chat_WCF_Service.pdb
+C:\Users\domin\OneDrive\Desktop\Chat_WCF\Chat_WCF_Service\Chat_WCF_Service\obj\Debug\Chat_WCF_Service.csproj.AssemblyReference.cache
+C:\Users\domin\OneDrive\Desktop\Chat_WCF\Chat_WCF_Service\Chat_WCF_Service\obj\Debug\Chat_WCF_Service.csproj.CoreCompileInputs.cache
+C:\Users\domin\OneDrive\Desktop\Chat_WCF\Chat_WCF_Service\Chat_WCF_Service\obj\Debug\Chat_WCF_Service.exe
+C:\Users\domin\OneDrive\Desktop\Chat_WCF\Chat_WCF_Service\Chat_WCF_Service\obj\Debug\Chat_WCF_Service.pdb

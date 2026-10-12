@@ -3,22 +3,58 @@ using System.ServiceModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Data.Common;
+using System.CodeDom.Compiler;
 
 namespace Chat_WCF_Service
 {
-    // SERVICE
     [ServiceContract]
-    public interface IMathe
+    public interface IChat
     {
-        [OperationContract] double Add(double a, double b);
+        [OperationContract] string WhichServiceAmI();
+        [OperationContract] void SendMessage(string message);
+        [OperationContract] string ReceiveMessages(ref int id);
     }
 
-    public class Mathe : IMathe
+    public class Chat : IChat
     {
-        public double Add(double a, double b)
+        public const string ServiceName = "WCF_GoluVodi_Service";
+        static string[] NewMessage = {};
+        public string WhichServiceAmI()
         {
-            return a + b;
+            return ServiceName;
+        }
+
+        public void SendMessage (string message)
+        {
+            try
+            {
+                NewMessage = NewMessage.Append(message).ToArray();
+                int id = NewMessage.Length;
+                ReceiveMessages(ref id);
+                Thread.Sleep(1000);
+                NewMessage.Skip(NewMessage.Length).ToArray();
+            }
+            catch
+            {
+                Console.WriteLine("Hilfe ich bin in Gefahr!!!!!!!");
+            }
+
+        }
+
+        public string ReceiveMessages(ref int id)
+        {
+            if(id == 0) return "";
+
+            string[] CombinedMessage = {};
+            for(int i = 0; i<=id; i++)
+            {
+                CombinedMessage = CombinedMessage.Append(NewMessage[i] + "\n").ToArray();
+            }
+
+            return string.Join("", CombinedMessage);
         }
     }
 
@@ -28,14 +64,14 @@ namespace Chat_WCF_Service
         {
             const string URL = "http://localhost:2310";
 
-            Console.WriteLine("WCF-Service - 5AHEL - Golubic");
+            Console.WriteLine(Chat.ServiceName);
             Console.WriteLine("URL: " + URL);
             Console.Write("Starting...");
 
-            ServiceHost myService = new ServiceHost(typeof(Mathe));
+            ServiceHost myService = new ServiceHost(typeof(Chat));
 
             myService.AddServiceEndpoint(
-                typeof(IMathe),
+                typeof(IChat),
                 new BasicHttpBinding(BasicHttpSecurityMode.None),
                 URL);
 
