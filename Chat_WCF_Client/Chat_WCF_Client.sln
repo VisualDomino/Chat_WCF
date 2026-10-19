@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.37628.2 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat_WCF_Service", "Chat_WCF_Service\Chat_WCF_Service.csproj", "{7D99E8A2-7BB5-41C6-838F-39267D2AB2A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat_WCF_Client", "Chat_WCF_Client\Chat_WCF_Client.csproj", "{9245DF4F-F71A-4FF9-9042-BF95031A89BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7D99E8A2-7BB5-41C6-838F-39267D2AB2A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D99E8A2-7BB5-41C6-838F-39267D2AB2A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D99E8A2-7BB5-41C6-838F-39267D2AB2A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D99E8A2-7BB5-41C6-838F-39267D2AB2A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9245DF4F-F71A-4FF9-9042-BF95031A89BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9245DF4F-F71A-4FF9-9042-BF95031A89BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9245DF4F-F71A-4FF9-9042-BF95031A89BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9245DF4F-F71A-4FF9-9042-BF95031A89BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {5271933A-7E4D-4A8F-BC1F-6AF740F4A335}
+		SolutionGuid = {1AF8FB77-CDF4-451A-B58D-CE3A5399BB92}
 	EndGlobalSection
 EndGlobal

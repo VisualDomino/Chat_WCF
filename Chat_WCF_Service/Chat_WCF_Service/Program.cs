@@ -1,60 +1,66 @@
 ﻿using System;
-using System.ServiceModel;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Data.Common;
-using System.CodeDom.Compiler;
+using System.ServiceModel;
 
 namespace Chat_WCF_Service
 {
     [ServiceContract]
     public interface IChat
     {
-        [OperationContract] string WhichServiceAmI();
-        [OperationContract] void SendMessage(string message);
-        [OperationContract] string ReceiveMessages(ref int id);
+        [OperationContract]
+        string WhichServiceAmI();
+
+        [OperationContract]
+        void SendMessage(string message);
+
+        [OperationContract]
+        void SendMessage2(string username, string message);
+
+        [OperationContract]
+        string ReceiveMessages(ref int id);
     }
 
     public class Chat : IChat
     {
         public const string ServiceName = "WCF_GoluVodi_Service";
-        static string[] NewMessage = {};
+
+        private static readonly List<string> Messages = new List<string>();
+
         public string WhichServiceAmI()
         {
             return ServiceName;
         }
 
-        public void SendMessage (string message)
+        public void SendMessage(string message)
         {
-            try
-            {
-                NewMessage = NewMessage.Append(message).ToArray();
-                int id = NewMessage.Length;
-                ReceiveMessages(ref id);
-                Thread.Sleep(1000);
-                NewMessage.Skip(NewMessage.Length).ToArray();
-            }
-            catch
-            {
-                Console.WriteLine("Hilfe ich bin in Gefahr!!!!!!!");
-            }
+            string newMessage = message;
 
+            Messages.Add(newMessage);
+        }
+
+        public void SendMessage2(string username, string message)
+        {
+            string newMessage =
+                username + ": " + message;
+
+            Messages.Add(newMessage);
         }
 
         public string ReceiveMessages(ref int id)
         {
-            if(id == 0) return "";
+            if (id < 0)
+                id = 0;
 
-            string[] CombinedMessage = {};
-            for(int i = 0; i<=id; i++)
+            string result = "";
+
+            for (int i = id; i < Messages.Count; i++)
             {
-                CombinedMessage = CombinedMessage.Append(NewMessage[i] + "\n").ToArray();
+                result += "[" + (i + 1) + "] "
+                    + Messages[i]
+                    + "\n";
             }
 
-            return string.Join("", CombinedMessage);
+            return result;
         }
     }
 
@@ -62,13 +68,14 @@ namespace Chat_WCF_Service
     {
         static void Main(string[] args)
         {
-            const string URL = "http://localhost:2310";
+            const string URL = "http://localhost:2310/Chat";
 
             Console.WriteLine(Chat.ServiceName);
             Console.WriteLine("URL: " + URL);
             Console.Write("Starting...");
 
-            ServiceHost myService = new ServiceHost(typeof(Chat));
+            ServiceHost myService =
+                new ServiceHost(typeof(Chat));
 
             myService.AddServiceEndpoint(
                 typeof(IChat),
@@ -78,7 +85,8 @@ namespace Chat_WCF_Service
             myService.Open();
 
             Console.WriteLine("Running!");
-            Console.WriteLine("Press 'ENTER' to close");
+            Console.WriteLine("Press ENTER to close");
+
             Console.ReadLine();
 
             myService.Close();
