@@ -60,6 +60,8 @@ namespace Chat_WCF_Service
                     + "\n";
             }
 
+            id = Messages.Count;
+
             return result;
         }
     }
