@@ -68,7 +68,7 @@ namespace Chat_WCF_Service
     {
         static void Main(string[] args)
         {
-            const string URL = "http://localhost:2310/Chat";
+            string URL = "http://" + GetIpAdr() + ":2310/Chat";
 
             Console.WriteLine(Chat.ServiceName);
             Console.WriteLine("URL: " + URL);
@@ -90,6 +90,21 @@ namespace Chat_WCF_Service
             Console.ReadLine();
 
             myService.Close();
+        }
+        private static string GetIpAdr()
+        {
+            string ipAdr = "127.0.0.1";
+            int index = 0;
+
+            do
+            {
+                ipAdr = System.Net.Dns.
+                    GetHostAddresses(
+                        Environment.MachineName)[index++].ToString();
+            }
+            while (ipAdr.Contains(":"));
+
+            return ipAdr;
         }
     }
 }
